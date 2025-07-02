@@ -1,6 +1,6 @@
 <?php
 
-namespace IM1\Installer\Commands;
+namespace IM1\ThemeInstaller\Commands;
 
 use CodeIgniter\CLI\BaseCommand;
 use CodeIgniter\CLI\CLI;

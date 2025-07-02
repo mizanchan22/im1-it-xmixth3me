@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "IM1\\Installer\\": "src/"
+            "IM1\\ThemeInstaller\\": "src/"
         }
     },
     "_comment": " isi apa-apa je kat bawah ni nama repo git/packgist org tu, cth;  'symfony/console': '^6.0' , simbol ni -> ' sebenarnya double quote.",
@@ -21,7 +21,7 @@
     "extra": {
         "codeigniter4": {
             "commands": {
-                "im1:theme": "IM1\\Installer\\Commands\\ThemeInstall"
+                "im1:theme": "IM1\\ThemeInstaller\\Commands\\ThemeInstall"
             }
         }
     }
