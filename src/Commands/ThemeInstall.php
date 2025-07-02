@@ -74,7 +74,7 @@ class ThemeInstall extends BaseCommand
 
     protected function copyTheme(string $themeKey): void
     {
-        $vendorPath    = ROOTPATH . 'vendor/mizanchan22/ci4-im-theme/stubs/';
+        $vendorPath    = ROOTPATH . 'vendor/mizanchan22/im1-it-xmixth3me/stubs/';
         $sourceViews   = $vendorPath . "views/layout_files/" . $themeKey;
         $sourceAssetsCSS  = $vendorPath . "public/assets/" . $themeKey . "/css";
         $sourceAssetsJS  = $vendorPath . "public/assets/" . $themeKey . "/js";
