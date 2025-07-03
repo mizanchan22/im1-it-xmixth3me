@@ -247,7 +247,8 @@ class ThemeInstall extends BaseCommand
 <!-- app wrapper -->
 <div class="app-wrapper">
     <!-- Content -->
-    DaH JADI INStall themes
+    <div class="text-center" style="font-family: 'Lato', sans-serif; font-size: 36px; font-weight: bold; color: #555">
+        Done Installation......</div>
     <!-- / Content -->
 </div>
 <!-- Content wrapper -->
