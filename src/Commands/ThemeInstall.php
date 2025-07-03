@@ -80,12 +80,14 @@ class ThemeInstall extends BaseCommand
         $sourceAssetsJS  = $vendorPath . "public/assets/" . $themeKey . "/js";
         $sourceAssetsVendor  = $vendorPath . "public/assets/" . $themeKey . "/vendor"; //Arif
         $sourceAssetsImg  = $vendorPath . "public/assets/" . $themeKey . "/img"; //Arif
+        $sourceAssetsFont  = $vendorPath . "public/assets/" . $themeKey . "/fonts";
 
         $targetViews   = APPPATH . 'Views/layouts/';
         $targetAssetsCSS  = FCPATH . 'assets/css/';
         $targetAssetsJS  = FCPATH . 'assets/js/';
         $targetAssetsVendor  = FCPATH . 'assets/vendor/'; //Arif
         $targetAssetsImg  = FCPATH . 'assets/img/'; //Arif
+        $targetAssetsFont  = FCPATH . 'assets/fonts/'; 
 
         $this->deleteDirectory(FCPATH . 'assets/'); // Delete the entire assets folder
         mkdir(FCPATH . 'assets', 0755, true);       // Recreate base assets folder
@@ -95,12 +97,14 @@ class ThemeInstall extends BaseCommand
         $this->recreateFolder($targetAssetsJS, $sourceAssetsJS);
         $this->recreateFolder($targetAssetsVendor, $sourceAssetsVendor);
         $this->recreateFolder($targetAssetsImg, $sourceAssetsImg);
+        $this->recreateFolder($targetAssetsFont, $sourceAssetsFont);
 
         $this->copyDirectory($sourceViews, $targetViews);
         $this->copyDirectory($sourceAssetsCSS, $targetAssetsCSS);
         $this->copyDirectory($sourceAssetsJS, $targetAssetsJS);
         $this->copyDirectory($sourceAssetsVendor, $targetAssetsVendor); //Arif
         $this->copyDirectory($sourceAssetsImg, $targetAssetsImg); //Arif
+        $this->copyDirectory($sourceAssetsFont, $targetAssetsFont);
 
         $this->updateBaseController();
         $this->replaceWelcomeMessage();
@@ -119,10 +123,13 @@ class ThemeInstall extends BaseCommand
             CLI::write("📁 Assets JS:  " . realpath($targetAssetsJS), 'blue');
         }
         if (realpath($targetAssetsVendor)) {
-            CLI::write("📁 Assets Vendor:  " . realpath($targetAssetsVendor), 'blue'); //Arif
+            CLI::write("📁 Assets Vendor:  " . realpath($targetAssetsVendor), 'blue');
         }
         if (realpath($targetAssetsImg)) {
-            CLI::write("📁 Assets Img:  " . realpath($targetAssetsImg), 'blue'); //Arif
+            CLI::write("📁 Assets Img:  " . realpath($targetAssetsImg), 'blue');
+        }
+        if (realpath($targetAssetsFont)) {
+            CLI::write("📁 Assets Fonts:  " . realpath($targetAssetsFont), 'blue');
         }
         CLI::newLine(2);
     }
