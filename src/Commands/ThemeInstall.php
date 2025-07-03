@@ -136,6 +136,7 @@ class ThemeInstall extends BaseCommand
     {
         if ($sourcePath && !is_dir($sourcePath)) {
             $name = $label ?? basename($targetPath);
+            CLI::newLine();
             CLI::write("⚠️  Folder '$name' tidak wujud dalam tema, skip buat '$targetPath'.", 'yellow');
             return;
         }
