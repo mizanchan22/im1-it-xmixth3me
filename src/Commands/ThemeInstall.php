@@ -109,18 +109,29 @@ class ThemeInstall extends BaseCommand
         CLI::newLine();
         CLI::write("✅ Tema '$themeKey' telah dipasang ke projek CI4 anda.", 'green');
         CLI::newLine();
-        CLI::write("📁 Layouts: " . realpath($targetViews), 'blue');
-        CLI::write("📁 Assets CSS:  " . realpath($targetAssetsCSS), 'blue');
-        CLI::write("📁 Assets JS:  " . realpath($targetAssetsJS), 'blue');
-        CLI::write("📁 Assets Vendor:  " . realpath($targetAssetsVendor), 'blue'); //Arif
-        CLI::write("📁 Assets Img:  " . realpath($targetAssetsImg), 'blue'); //Arif
+         if (realpath($targetViews)) {
+            CLI::write("📁 Layouts: " . realpath($targetViews), 'blue');
+        }
+        if (realpath($targetAssetsCSS)) {
+            CLI::write("📁 Assets CSS:  " . realpath($targetAssetsCSS), 'blue');
+        }
+        if (realpath($targetAssetsJS)) {
+            CLI::write("📁 Assets JS:  " . realpath($targetAssetsJS), 'blue');
+        }
+        if (realpath($targetAssetsVendor)) {
+            CLI::write("📁 Assets Vendor:  " . realpath($targetAssetsVendor), 'blue'); //Arif
+        }
+        if (realpath($targetAssetsImg)) {
+            CLI::write("📁 Assets Img:  " . realpath($targetAssetsImg), 'blue'); //Arif
+        }
         CLI::newLine(2);
     }
 
-    protected function recreateFolder(string $targetPath, ?string $sourcePath = null): void
+    protected function recreateFolder(string $targetPath, ?string $sourcePath = null, ?string $label = null): void
     {
         if ($sourcePath && !is_dir($sourcePath)) {
-            // Kalau source folder tak wujud, jangan buat apa-apa
+            $name = $label ?? basename($targetPath);
+            CLI::write("⚠️  Folder '$name' tidak wujud dalam tema, skip buat '$targetPath'.", 'yellow');
             return;
         }
 
@@ -134,8 +145,8 @@ class ThemeInstall extends BaseCommand
     protected function copyDirectory(string $src, string $dst): void
     {
         if (!is_dir($src)) {
-            CLI::error("❌ Folder tidak wujud: $src");
-        CLI::newLine();
+        // CLI::error("❌ Folder tidak wujud: $src");
+        // CLI::newLine();
 
             return;
         }
