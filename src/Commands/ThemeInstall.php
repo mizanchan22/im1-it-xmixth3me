@@ -109,8 +109,6 @@ class ThemeInstall extends BaseCommand
         $this->updateBaseController();
         $this->replaceWelcomeMessage();
 
-
-        CLI::newLine();
         CLI::write("✅ Tema '$themeKey' telah dipasang ke projek CI4 anda.", 'green');
         CLI::newLine();
          if (realpath($targetViews)) {
@@ -211,13 +209,14 @@ class ThemeInstall extends BaseCommand
         $content = file_get_contents($file);
 
         if (strpos($content, $replacement) !== false) {
+            CLI::newLine();
             CLI::write("ℹ️  BaseController.php sudah dikemaskini sebelum ini.", 'yellow');
             return;
         }
 
         if (strpos($content, $original) === false) {
             CLI::error("❌ Gagal cari line helpers dalam BaseController.php");
-        CLI::newLine();
+            CLI::newLine();
 
             return;
         }
