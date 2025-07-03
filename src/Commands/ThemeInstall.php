@@ -87,11 +87,14 @@ class ThemeInstall extends BaseCommand
         $targetAssetsVendor  = FCPATH . 'assets/vendor/'; //Arif
         $targetAssetsImg  = FCPATH . 'assets/img/'; //Arif
 
-        $this->recreateFolder($targetViews);
-        $this->recreateFolder($targetAssetsCSS);
-        $this->recreateFolder($targetAssetsJS);
-        $this->recreateFolder($targetAssetsVendor); //Arif
-        $this->recreateFolder($targetAssetsImg); //Arif
+        $this->deleteDirectory(FCPATH . 'assets/'); // Delete the entire assets folder
+        mkdir(FCPATH . 'assets', 0755, true);       // Recreate base assets folder
+
+        $this->recreateFolder($targetViews, $sourceViews);
+        $this->recreateFolder($targetAssetsCSS, $sourceAssetsCSS);
+        $this->recreateFolder($targetAssetsJS, $sourceAssetsJS);
+        $this->recreateFolder($targetAssetsVendor, $sourceAssetsVendor);
+        $this->recreateFolder($targetAssetsImg, $sourceAssetsImg);
 
         $this->copyDirectory($sourceViews, $targetViews);
         $this->copyDirectory($sourceAssetsCSS, $targetAssetsCSS);
@@ -114,12 +117,18 @@ class ThemeInstall extends BaseCommand
         CLI::newLine(2);
     }
 
-    protected function recreateFolder(string $path): void
+    protected function recreateFolder(string $targetPath, ?string $sourcePath = null): void
     {
-        if (is_dir($path)) {
-            $this->deleteDirectory($path);
+        if ($sourcePath && !is_dir($sourcePath)) {
+            // Kalau source folder tak wujud, jangan buat apa-apa
+            return;
         }
-        mkdir($path, 0755, true);
+
+        if (is_dir($targetPath)) {
+            $this->deleteDirectory($targetPath);
+        }
+
+        mkdir($targetPath, 0755, true);
     }
 
     protected function copyDirectory(string $src, string $dst): void
