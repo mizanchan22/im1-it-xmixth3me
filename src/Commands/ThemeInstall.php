@@ -78,18 +78,26 @@ class ThemeInstall extends BaseCommand
         $sourceViews   = $vendorPath . "views/layout_files/" . $themeKey;
         $sourceAssetsCSS  = $vendorPath . "public/assets/" . $themeKey . "/css";
         $sourceAssetsJS  = $vendorPath . "public/assets/" . $themeKey . "/js";
+        $sourceAssetsVendor  = $vendorPath . "public/assets/" . $themeKey . "/vendor"; //Arif
+        $sourceAssetsImg  = $vendorPath . "public/assets/" . $themeKey . "/img"; //Arif
 
         $targetViews   = APPPATH . 'Views/layouts/';
         $targetAssetsCSS  = FCPATH . 'assets/css/';
         $targetAssetsJS  = FCPATH . 'assets/js/';
+        $targetAssetsVendor  = FCPATH . 'assets/vendor/'; //Arif
+        $targetAssetsImg  = FCPATH . 'assets/img/'; //Arif
 
         $this->recreateFolder($targetViews);
         $this->recreateFolder($targetAssetsCSS);
         $this->recreateFolder($targetAssetsJS);
+        $this->recreateFolder($targetAssetsVendor); //Arif
+        $this->recreateFolder($targetAssetsImg); //Arif
 
         $this->copyDirectory($sourceViews, $targetViews);
         $this->copyDirectory($sourceAssetsCSS, $targetAssetsCSS);
         $this->copyDirectory($sourceAssetsJS, $targetAssetsJS);
+        $this->copyDirectory($sourceAssetsVendor, $targetAssetsVendor); //Arif
+        $this->copyDirectory($sourceAssetsImg, $targetAssetsImg); //Arif
 
         $this->updateBaseController();
         $this->replaceWelcomeMessage();
@@ -101,6 +109,8 @@ class ThemeInstall extends BaseCommand
         CLI::write("📁 Layouts: " . realpath($targetViews), 'blue');
         CLI::write("📁 Assets CSS:  " . realpath($targetAssetsCSS), 'blue');
         CLI::write("📁 Assets JS:  " . realpath($targetAssetsJS), 'blue');
+        CLI::write("📁 Assets Vendor:  " . realpath($targetAssetsVendor), 'blue'); //Arif
+        CLI::write("📁 Assets Img:  " . realpath($targetAssetsImg), 'blue'); //Arif
         CLI::newLine(2);
     }
 
