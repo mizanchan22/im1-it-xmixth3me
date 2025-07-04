@@ -29,11 +29,9 @@ class ThemeInstall extends BaseCommand
         CLI::newLine();
 
         CLI::write("1. Bootstrap 5", 'white');
-        CLI::write("2. Bootstrap 4", 'white');
-        CLI::write("3. Bootstrap 3", 'white');
         CLI::newLine();
 
-        $version = CLI::prompt("Pilih versi Bootstrap (1-3)");
+        $version = CLI::prompt("Pilih versi Bootstrap (1)");
 
         if ($version === '1') {
             $this->selectBootstrap5();
